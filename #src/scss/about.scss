@@ -1,0 +1,40 @@
+.about {
+    width: 100%;
+    // border: 1px solid white;
+    height: 554px;
+    font-family:$Oranienbaum;
+    // margin-top: 100px;
+}
+
+
+.logo-image {
+    // border: 1px solid red;
+    height: 50%;
+    margin-top: 60px;
+    @media (max-width: $md3+px) {
+            text-align: center;
+            height: 35%;
+        }
+
+}
+
+.mission {
+    // border: 1px solid purple;
+    // .mission__heading
+
+    &__heading {
+        color: white;
+        font-size: 24px;
+    }
+
+
+    @media (max-width: $md3+px) {
+        text-align: center;
+    }
+}
+
+.mission a {
+    color: #cdb380;
+    font-size: 16px;
+    text-decoration: underline;
+}

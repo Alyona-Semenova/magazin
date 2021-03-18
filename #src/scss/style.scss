@@ -1,0 +1,95 @@
+@mixin font($font_name, $file_name, $weight, $style) {
+    @font-face {
+        font-family: $font_name;
+        font-display: swap;
+        src: url("../fonts/#{$file_name}.woff") format("woff"), 
+        url("../fonts/#{$file_name}.woff") format("woff2");
+        font-weight: #{$weight};
+        font-style: #{$style};
+    }
+}
+
+
+//МИКСИНЫ
+@import "mixins";
+//ШРИФТЫ
+
+//&display=swap&subset=cyrillic-ext
+@import url("https://fonts.googleapis.com/css?family=Roboto:regular,500,700,900&display=swap&subset=cyrillic-ext");
+@import url("https://fonts.googleapis.com/css?family=Oranienbaum:regular&display=swap&subset=cyrillic-ext");
+
+
+@import "fonts";
+
+//ПЕРЕМЕННЫЕ
+
+$Roboto: "Roboto";
+$Oranienbaum: "Oranienbaum";
+
+$minWidth: 320px;
+$maxWidth: 1152;
+$maxWidthContainer: 1146;
+//СТАНДАРТНЫЕ БРЕЙКПОИНТЫ
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+//ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ
+@import "null";
+
+
+
+body {
+    background: url(/img/bg-main.png) top #000 no-repeat!important;
+    color: #000;
+    font-size: 14px;
+    &._lock {
+        overflow: hidden;
+    }
+    user-select: none;
+}
+
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    &._loaded {
+    }
+}
+
+//ОСНОВНАЯ СЕТКА
+
+._container {
+    max-width: $maxWidthContainer + px;
+    margin: 0 auto;
+    @media (max-width: $md1 + px) {
+        max-width: 970px;
+    }
+    @media (max-width: $md2 + px) {
+        max-width: 750px;
+    }
+    @media (max-width: $md3 + px) {
+        max-width: none;
+        // padding: 0 10px;
+    }
+}
+
+
+@import "header";
+@import "icons";
+@import "about";
+@import "main-content";
+@import "footer";
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+._section{
+    height: 100%;
+    background-color: white;
+}
