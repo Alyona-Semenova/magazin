@@ -1,5 +1,5 @@
 ._block-conteiner {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -7,9 +7,8 @@
     width: 100%;
     height: 100%;
     background: #fff;
-    position: relative;
     overflow: hidden;
-    font-family: $Roboto;
+    position: relative;
     color: #333333;
     text-align: center;
 
@@ -17,32 +16,41 @@
         margin: 0 auto;
         width: 70%;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 1rem;
         line-height: 2rem;
     }
+    &__heading {
+        @media (max-width: $md3 + px) {
+            margin: 0 auto;
+            margin-top: 80px !important;
+        }
+    }
+    &__description {
+        margin-top: 20px;
+        @media (max-width: $md3 + px) {
+        }
+    }
 }
-
 .ribbon {
     left: -40px;
     position: absolute;
-    top: 40px;
+    top: 50px;
     height: 25px;
-    width: 180px;
+    width: 200px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-color: #ff0c3a;
     color: white;
     display: flex;
     align-items: center;
     transform: rotate(-45deg);
-    &__.ribbon p {
-        width: 100%;
-        text-align: center;
-        position: absolute;
-        margin-left: 50px;
+
+    & p {
+        margin: 0 auto;
     }
 }
 
 .heading {
+    display: inline-block;
     font-size: 2.2rem;
     font-family: $Oranienbaum;
     text-transform: uppercase;
@@ -52,7 +60,21 @@
 }
 .process {
     height: 100%;
-    &__descr {
+    &__descr p {
+        color: #585858;
+        font-size: 1rem;
+        margin: 30px 0 30px 0;
+        &:last-child {
+            width: 70%;
+            margin-left: 50px;
+            line-height: 1.5rem;
+        }
+    }
+}
+
+.table-container {
+    @media (max-width: $md3 + px) {
+        overflow: scroll;
     }
 }
 table {
@@ -64,6 +86,7 @@ table {
     & td,
     & th {
         padding: 10px;
+        border: 2px solid #fdc400;
     }
     & th {
         background: #ffd100;
@@ -89,11 +112,12 @@ table {
         border: 1px solid black;
         margin-right: 3px;
         display: inline-block;
-        font-size: 14px;
+        font-size: 0.85rem;
         text-align: center;
         vertical-align: center;
     }
     & .order {
+        cursor: pointer;
         background: #000;
         border: none;
         outline: none;
@@ -102,9 +126,13 @@ table {
         width: 90px;
         color: white;
         text-transform: uppercase;
-        font-size: 10px;
+        font-size: 0.625rem;
         font-weight: bold;
     }
+}
+
+figure {
+    padding-top: 45px;
 }
 
 .packages {
@@ -112,7 +140,6 @@ table {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    font-family: $Roboto;
     &__item > * {
         margin: 0 auto;
     }
@@ -162,11 +189,11 @@ table {
 }
 .old-price {
     color: #b5b5b5;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 .new-price {
     color: black;
-    font-size: 25px;
+    font-size: 1.56rem;
     font-weight: bold;
     margin-top: 5px;
 }
@@ -187,16 +214,13 @@ table {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    font-family: $Roboto;
-    font-size: 22px;
-    color: #585858;
+    font-size: 1.37rem;
     &:last-child {
         padding-bottom: 50px;
     }
     & .step-block {
         margin: 0 auto;
         padding: 50px 0 25px 0;
-        // border: 2px solid red;
         width: 80%;
         display: flex;
         justify-content: center;
@@ -206,14 +230,14 @@ table {
             padding: 0px 0 0px 0;
         }
         & img {
-            width: 25rem;
+            width: 15rem;
             min-width: 250px;
             display: block;
         }
         &__descr {
             width: 450px;
-            height: 150px;
             padding-left: 30px;
+            color: #585858;
             @media (max-width: $md2 + px) {
                 padding: 0;
                 margin: 50px 0 20px 0;

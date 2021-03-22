@@ -1,12 +1,9 @@
 const autoPrefixer = require('gulp-autoprefixer');
 
-let project_folder = require("path").basename(__dirname); //сюда собирается проект
-let source_folder = "#src"; //папка с исходниками
+let project_folder = require("path").basename(__dirname);
+let source_folder = "#src";
 
 let fs = require('fs');
-
-
-//пути куда gulp будет выгружать обработанные файлы
 
 let path = {
     build: {
@@ -15,7 +12,6 @@ let path = {
         js: project_folder + "/js",
         img: project_folder + "/img",
         fonts: project_folder + "/fonts",
-        // удалить
         fancybox: project_folder + "/fancybox",
     },
 
@@ -23,13 +19,10 @@ let path = {
         html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
         css: source_folder + "/scss/style.scss",
         js: source_folder + "/js/script.js",
-        img: source_folder + "/img/**/*.{jpg,png,gif,ico,webp}", // слушаем все подпапки, которые находятся в img, но смотрим только на файлы с любым названием, но конкретным расширением
+        img: source_folder + "/img/**/*.{jpg,png,gif,ico,webp}",
         fonts: source_folder + "/fonts/*.ttf",
-        // удалить
         fancybox: source_folder + "/fancybox/*",
     },
-
-    //пути к файлам, которые нужно слушать постоянно
 
     watch: {
         html: source_folder + "/**/*.html",
@@ -38,11 +31,9 @@ let path = {
         img: source_folder + "/img/**/*.{jpg,png,gif,ico,webp}",
     },
 
-    //путь к папке проекта, отвечает за удаление папки проекта каждый раз когда мы запускаем gulp
-
     clean: "./" + project_folder + "/"
 }
-//плагины
+
 let {
     src,
     dest
@@ -67,7 +58,6 @@ let {
     fonter = require("gulp-fonter");
 
 
-//настройка плагина
 function browserSync(params) {
     browsersync.init({
         server: {
@@ -75,7 +65,6 @@ function browserSync(params) {
         },
         port: 3000,
         notify: false
-
     })
 }
 
@@ -85,7 +74,6 @@ function html() {
         .pipe(webphtml())
         .pipe(dest(path.build.html))
         .pipe(browsersync.stream())
-
 }
 
 function css() {
@@ -106,7 +94,7 @@ function css() {
             })
         )
         .pipe(webpcss({}))
-        .pipe(dest(path.build.css)) //выгрузка перед сжатием
+        .pipe(dest(path.build.css))
 
         .pipe(clean_css())
         .pipe(
@@ -114,7 +102,7 @@ function css() {
                 extname: ".min.css"
             })
         )
-        .pipe(dest(path.build.css)) //выгрузка после сжатия css-файла
+        .pipe(dest(path.build.css))
         .pipe(browsersync.stream())
 }
 
@@ -151,7 +139,7 @@ function images() {
                     removeViewBox: false
                 }],
                 interlaced: true,
-                optimizationLexel: 3 // 0 to 7 как сильно мы хотим сжимать изображение
+                optimizationLexel: 3
             })
         )
         .pipe(dest(path.build.img))
@@ -185,19 +173,6 @@ gulp.task('otf2ttf', function () {
 })
 
 
-gulp.task('svgSprite', function () {
-    return gulp.src([source_folder + '/iconsprite/*.svg']) //получаем исходники - иконки
-        .pipe(svgSprite({
-            mode: {
-                stack: {
-                    sprite: "../icons/icons.svg", //sprite file name
-                    //example: true
-                }
-            },
-        }))
-        .pipe(dest(path.build.img))
-})
-
 function fontsStyle(params) {
     let file_content = fs.readFileSync(source_folder + '/scss/fonts.scss');
     if (file_content == '') {
@@ -217,7 +192,8 @@ function fontsStyle(params) {
         })
     }
 }
-function cb() { }
+
+function cb() {}
 
 function watchFiles(params) {
     gulp.watch([path.watch.html], html);
@@ -230,11 +206,9 @@ function clean(params) {
     return del(path.clean);
 }
 
+
 let build = gulp.series(clean, gulp.parallel(js, css, html, images, fonts, fancybox), fontsStyle);
 let watch = gulp.parallel(build, watchFiles, browserSync);
-
-//заставляем gulp подружиться с переменными
-
 
 exports.fontsStyle = fontsStyle;
 exports.fonts = fonts;

@@ -1,10 +1,22 @@
 .header {
+    position: fixed;
+    width: 100%;
     font-family: $Oranienbaum;
     color: white;
     font-size: 20px;
     height: 100px;
-    // position: fixed;
-    // align-items: center;
+
+    @media (max-width: $md1 + px) {
+        position: fixed;
+        left: 0;
+        padding-top: 20px;
+    }
+    @media (max-width: $md3+px) {
+        z-index: 2;
+        height: 60px;
+        width: 100%;
+        padding-top: 0;
+    }
 
     //header__content
     &__content {
@@ -15,19 +27,27 @@
     //header__menu
     &__menu {
         height: 100px;
-        @media (max-width: $md3+px) {
-            height: 50px;
-        }
+    }
+
+    &.bg-scroll {
+        background-color: black!important;
+        z-index: 5;
     }
 }
 
 .menu {
     height: 100%;
-
     &__body {
         display: flex;
+        justify-content: center;
         height: 100%;
         align-items: center;
+
+        @media (max-width: $md2 + px) {
+            justify-content: start;
+            flex-wrap: wrap;
+        }
+
         @media (max-width: $md3+px) {
             transform: translate(-100%, 0px);
             transition: transform 0.3s ease 0s;
@@ -39,9 +59,8 @@
             left: 0;
             overflow: auto;
             padding: 60px 0px 20px 20px;
-            // overflow: hidden;
-            
-            &._active{
+
+            &._active {
                 transform: translate(0px, 0%);
                 overflow: hidden;
                 z-index: 2;
@@ -49,10 +68,19 @@
             }
         }
     }
+
     //menu__list
     &__list {
+        display: flex;
+        margin-right: 50px;
+
+        @media (max-width: $md3 + px) {
+            margin-bottom: 20px;
+        }
+
         @media (max-width: $md3+px) {
             display: block;
+
             li {
                 margin-bottom: 10px;
                 &:last-child {
@@ -60,9 +88,11 @@
                 }
             }
         }
+
         display: flex;
         justify-content: space-between;
     }
+
     //menu__link
     &__link {
         width: 100px;
@@ -70,8 +100,9 @@
         cursor: pointer;
         margin-right: 24px;
         transition: color 0.3s ease 0s;
-        @media(max-width: $md3+px) {
-            font-size: 25px;
+
+        @media (max-width: $md3+px) {
+            font-size: 1.87rem;
         }
     }
 
@@ -84,7 +115,10 @@
     &__social {
         cursor: pointer;
         width: 100px;
-        
+
+        @media (max-width: $md3+px) {
+            margin-bottom: 15px;
+        }
     }
 
     &__social > * {
@@ -95,7 +129,7 @@
 
     // .menu__social-inst
     &__social-inst {
-        background-image: url(/img/1438557260_inst_4.png);
+        background-image: url(../img/1438557260_inst_4.png);
         background-position: 0 0;
         width: 25px;
         height: 25px;
@@ -106,9 +140,8 @@
     }
 
     // .menu__social-fb
-
     &__social-fb {
-        background-image: url(/img/1438557245_fb_4.png);
+        background-image: url(../img/1438557245_fb_4.png);
         background-position: 0 0;
         width: 25px;
         height: 25px;
@@ -119,9 +152,8 @@
     }
 
     // .menu__social-vk
-
     &__social-vk {
-        background-image: url(/img/1438423986_vk_3.png);
+        background-image: url(../img/1438423986_vk_3.png);
         background-position: 0 0;
         width: 25px;
         height: 25px;
@@ -153,22 +185,26 @@
             width: 100%;
             height: 2px;
             background: white;
+
             &:first-child {
                 top: 0px;
             }
+
             &:last-child {
                 top: auto;
                 bottom: 0px;
             }
         }
+
         &._active {
-            
             span {
                 transform: scale(0);
+
                 &:first-child {
                     transform: rotate(-45deg);
                     top: calc(50% - 1px);
                 }
+
                 &:last-child {
                     transform: rotate(45deg);
                     top: calc(50% - 1px);
@@ -178,22 +214,21 @@
     }
 }
 
-
 .phones {
     &__item {
-        width: 150px;
-        font-size: 18px;
-        margin-top: 8px;
+        width: 200px;
+        font-size: 1.25rem;
         text-align: right;
         transition: color 0.3s ease 0s;
+
         @media (max-width: $md3+px) {
             text-align: start;
         }
     }
+
     //phones__item:hover
     &__item:hover {
         color: #51c4d4;
         cursor: pointer;
-        
     }
 }
